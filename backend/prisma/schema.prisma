@@ -1,0 +1,55 @@
+
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+   id Int @id @default(autoincrement())
+   username String
+   password String
+
+}
+
+model Order{
+    id Int @id @default(autoincrement())
+    userID Int
+    market String
+    price Float
+    quantity Int
+    type Int
+    side String
+    filledQuantity Int
+    status String
+    created DateTime @default(now())
+}
+
+model Fill{
+    id Int @id @default(autoincrement())
+    quantity Int 
+    side String
+    type String
+    userID Int
+    price Float
+    asset String
+    originalOrderID Int
+    createdAt   DateTime @default(now())
+
+
+
+}
+
+model Stocks{
+   id Int @id @default(autoincrement())
+   name String @unique
+   symbol String
+
+
+
+
+}
